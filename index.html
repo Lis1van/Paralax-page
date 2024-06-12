@@ -1,3 +1,10 @@
+<!--Давайте рассмотрим данный HTML-код. Этот проект использует библиотеку GSAP (GreenSock Animation Platform) для
+создания параллакс-эффекта. Параллакс-эффект позволяет создавать визуальные иллюзии глубины и движения путем изменения
+скорости движения слоев фона при прокрутке страницы.-->
+
+<!--### Разбор HTML-кода-->
+
+
 <!doctype html>
 <html lang="en">
 
@@ -8,30 +15,140 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Parallax</title>
 	<link rel="stylesheet" href="css/main.css">
+	<script src="libs/gsap/gsap.min.js" defer></script>
+	<script src="libs/gsap/ScrollTrigger.min.js" defer></script>
+	<script src="libs/gsap/ScrollSmoother.min.js" defer></script>
 	<script src="js/app.js" defer></script>
 </head>
 
+
+<!--#### Блок `<head>`-->
+<!--	-->
+<!--	1. **`<meta charset="UTF-8">`**:-->
+<!--	- Устанавливает кодировку документа как UTF-8, обеспечивая поддержку широкого набора символов.-->
+<!--	-->
+<!--	2. **`<meta name="viewport"`...>**:-->
+<!--	- Управляет представлением страницы на различных устройствах. Устанавливает масштаб страницы и отключает
+возможность изменения масштаба пользователем, чтобы контент отображался одинаково на всех устройствах.-->
+<!--	-->
+<!--	3. **`<meta http-equiv="X-UA-Compatible"`...>**:-->
+<!--	- Определяет режим совместимости, рекомендуя использовать последний режим рендеринга для Internet Explorer.-->
+<!--	-->
+<!--	4. **`<title>Parallax</title>`**:-->
+<!--	- Устанавливает заголовок страницы, который будет отображаться на вкладке браузера.-->
+<!--	-->
+<!--	5. **`<link rel="stylesheet" href="css/main.css">`**:-->
+<!--	- Подключает файл стилей `main.css`, который будет использоваться для стилизации элементов страницы.-->
+<!--	-->
+<!--	6. **`<script src="libs/gsap/gsap.min.js" defer></script>`**:-->
+<!--	- Подключает основной файл библиотеки GSAP для анимации, но выполняет его после загрузки всей страницы,
+ благодаря атрибуту `defer`.-->
+<!--	-->
+<!--	7. **`<script src="libs/gsap/ScrollTrigger.min.js" defer></script>`**:-->
+<!--	- Подключает плагин `ScrollTrigger` из GSAP, который позволяет анимировать элементы при прокрутке страницы.-->
+<!--	-->
+<!--	8. **`<script src="libs/gsap/ScrollSmoother.min.js" defer></script>`**:-->
+<!--	- Подключает плагин `ScrollSmoother` для плавной прокрутки и улучшенного восприятия параллакс-эффектов.-->
+<!--	-->
+<!--	9. **`<script src="js/app.js" defer></script>`**:-->
+<!--	- Подключает пользовательский JavaScript-файл `app.js`, который будет содержать логику для параллакс-эффектов
+и других анимаций.-->
+<!--	-->
+<!--	### Разбор `<body>`-->
+
+
 <body>
-<header class="main-header">
-	<div class="layers">
-		<div class="layers-header">
-			<div class="layers-caption">Welcome to Parallax</div>
-			<div class="layers-title">Fairy forest</div>
-		</div>
-		<div class="layer layers-base" style="background-image: url(img/layer-base.png)"></div>
-		<div class="layer layers-middle" style="background-image: url(img/layer-middle.png)"></div>
-		<div class="layer layers-front" style="background-image: url(img/layer-front.png)"></div>
+<div class="wrapper">
+	<div class="content">
+		<header class="main-header">
+			<div class="layers">
+				<div class="layers-header">
+					<div class="layers-caption">Welcome to Parallax</div>
+					<div class="layers-title">Fairy forest</div>
+				</div>
+				<div class="layer layers-base" style="background-image: url(img/layer-base.png)"></div>
+				<div class="layer layers-middle" style="background-image: url(img/layer-middle.png)"></div>
+				<div class="layer layers-front" style="background-image: url(img/layer-front.png)"></div>
+			</div>
+		</header>
+		<article class="main-article" style="background-image: url(img/dungeon.jpg)">
+			<div class="main-article_content">
+				<h2 class="main-article_header">To be continued</h2>
+				<p class="main-article_paragraph">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae commodi hic illum molestias obcaecati
+					voluptas voluptatum? Dolorem doloribus iure nisi quod reiciendis veniam. Consectetur dolorum enim incidunt
+					rerum sit? Commodi, qui, quod?</p>
+			</div>
+			<div class="copy">© WebDesign for LisVan</div>
+		</article>
 	</div>
-	
-</header>
-<article class="main-article" style="background-image: url(img/dungeon.jpg)">
-	<div class="main-article_content">
-		<h2 class="main-article_header">To be continued</h2>
-		<p class="main-article_paragraph">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae commodi hic illum molestias obcaecati
-			voluptas voluptatum? Dolorem doloribus iure nisi quod reiciendis veniam. Consectetur dolorum enim incidunt
-			rerum sit? Commodi, qui, quod?</p>
-	</div>
-	<div class="copy">© WebDesign for LisVan</div>
-</article>
+</div>
 </body>
 </html>
+
+
+<!--#### Структура `<body>`-->
+
+<!--1. **`<div class="wrapper">`**:-->
+<!--	- Главный контейнер, который оборачивает весь контент страницы. Возможно, используется для задания стилей и анимаций,
+касающихся всей страницы.-->
+<!--	-->
+<!--2. **`<div class="content">`**:-->
+<!--	- Контейнер для основного содержимого страницы.-->
+<!--	-->
+<!--3. **`<header class="main-header">`**:-->
+<!--	- Основной заголовок страницы, содержащий параллакс-слои.-->
+<!--	-->
+<!--4. **`<div class="layers">`**:-->
+<!--	- Контейнер для всех параллакс-слоев. Внутри этого контейнера находятся элементы, которые создают визуальные эффекты.-->
+<!--	-->
+<!--5. **`<div class="layers-header">`**:-->
+<!--	- Содержит текстовые элементы заголовка и подзаголовка.-->
+<!--	-->
+<!--- **`<div class="layers-caption">`**:-->
+<!--	- Отображает текст "Welcome to Parallax". Это может быть подзаголовок или приветствие.-->
+<!--	-->
+<!--- **`<div class="layers-title">`**:-->
+<!--	- Отображает основной заголовок "Fairy forest".-->
+<!--	-->
+<!--6. **`<div class="layer layers-base"`...>**:-->
+<!--	- Отдельные слои параллакса, каждый из которых имеет собственное изображение фона.-->
+<!--	- **`layers-base`**: базовый слой, скорее всего, самый дальний в фоне.-->
+<!--	- **`layers-middle`**: средний слой, ближе к пользователю.-->
+<!--	- **`layers-front`**: передний слой, ближе всего к пользователю.-->
+<!--	-->
+<!--Каждому слою назначено фоновое изображение с помощью встроенного стиля `style="background-image: url(img/layer-xxx.png)"`.-->
+<!--	-->
+<!--7. **`<article class="main-article"`...>**:-->
+<!--	- Основная статья или блок контента, возможно, с параллакс-фоном.-->
+<!--	- Фон назначается также встроенным стилем `style="background-image: url(img/dungeon.jpg)"`.-->
+<!--	-->
+<!--8. **`<div class="main-article_content">`**:-->
+<!--	- Контейнер для текста внутри основного блока контента.-->
+<!--	-->
+<!--		- **`<h2 class="main-article_header">`**:-->
+<!--		- Заголовок статьи "To be continued".-->
+<!--		-->
+<!--		- **`<p class="main-article_paragraph">`**:-->
+<!--		- Параграф текста, который обычно используется для размещения текста статьи.-->
+<!--		-->
+<!--9. **`<div class="copy">`**:-->
+<!--	- Элемент для отображения копирайта или информации об авторстве "© WebDesign for LisVan".-->
+<!--	-->
+<!--### Как это работает вместе-->
+<!--	-->
+<!--	- **Параллакс-эффект** создается путем разной скорости движения каждого слоя (base, middle, front)
+при прокрутке страницы. Это достигается с помощью библиотек GSAP и плагинов `ScrollTrigger` и `ScrollSmoother`.-->
+<!--	- **Структура и стилизация** задаются в `main.css`, чтобы каждый элемент располагался и отображался правильно,
+а библиотека GSAP обеспечивает плавную анимацию и взаимодействие с прокруткой.-->
+<!--	- **Скрипты в `app.js`** (которые подключаются через `<script defer>` в `<head>`) будут управлять поведением и
+анимацией элементов, возможно, обеспечивая динамическое изменение слоев при прокрутке, создавая эффект параллакса.-->
+
+<!--### Дополнительные комментарии-->
+
+<!-- - **Параллакс-эффект** часто используется для создания впечатляющих визуальных эффектов на веб-страницах,
+ придавая им глубину и динамику.-->
+<!-- - Использование библиотек, таких как GSAP, значительно упрощает процесс создания сложных анимаций и эффектов,
+которые были бы трудоемкими при ручной реализации.-->
+
+<!--Этот подход отлично подходит для создания современных и интерактивных веб-страниц, которые привлекают внимание
+ пользователей и улучшают их восприятие контента.-->
